@@ -43,6 +43,7 @@
 <div class="register-box">
     <div class="register-logo">
         <a href="{{ url('/home') }}"><b>NEWSLETTER  </b></a>
+        <p> Registro de usuarios</p>
     </div>
     <div class="register-box-body">
         <form method="post" action="{{ url('/register') }}">
@@ -50,7 +51,6 @@
             {!! csrf_field() !!}
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
                 <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo Electronico">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -61,7 +61,6 @@
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
                 <input type="password" class="form-control" name="password" placeholder="Password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password'))
                     <span class="help-block">
@@ -72,7 +71,6 @@
 
             <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                 <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmar  password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">

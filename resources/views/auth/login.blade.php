@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Registro</title>
+    <title>Login</title>
 
     <!-- LATO  -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -46,13 +47,15 @@
 <div id="wrapper">
     <div class="register-logo">
         <a ><b>NEWSLETTER  </b></a>
-        <p class="text-center">Registrate y recibe promociones y noticias sobretodas nuestras marcas</p>
+        <p class="text-center">Registrate y recibe promociones y noticias sobre todas nuestras marcas</p>
     </div>
     <!-- /.login-logo -->
 
 
         <form method="post" action="{{ url('/auth/login') }}">
             {!! csrf_field() !!}
+            
+
             <div class="row">
                 <div class="contenedor col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-xs-7 col-md-7 col-sm-7">
                     <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -71,6 +74,7 @@
                         </span>
                         @endif
                     </div>
+                    <a id="reg" href="{!! url('/register') !!}">Registro </a>
                 </div>
                 <div class="contenedor col-xs-3 col-md-3 col-sm-3 pull-right">
                     <a id="send"  class="boton"><i class="fa fa-caret-right"></i></a>

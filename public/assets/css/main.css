@@ -14,6 +14,9 @@ body > div > div.register-logo > a > b{
 	border: 1px solid #000;
     color: #000;
 }
+.form-group > input[type="file"]{
+	border: 0px;
+	}
 .form-group > input{
 	    border: 1px solid #000;
 	    padding: 20px;
@@ -48,4 +51,12 @@ body > div > div.register-logo > a > b{
 }
 #wrapper > div > p{
 	margin-bottom: 20px;
+}
+#reg{
+	font-family: 'Lato';
+	letter-spacing: 6px;
+	color: #000;
+}
+#desc{
+	font-style: italic;
 }

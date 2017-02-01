@@ -32,8 +32,10 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('/home', 'HomeController@index');
-/*
-Route::get('login', 'Auth\AuthController@getLogin');
-Route::post('login', 'Auth\AuthController@postLogin');
-Route::get('logout', 'Auth\AuthController@getLogout');
-*/
+Route::post('/home', 'HomeController@index');
+
+
+
+Route::get('posts/create', 'postController@create');
+
+Route::resource('posts', 'postController');
