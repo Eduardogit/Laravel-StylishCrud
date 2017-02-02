@@ -2,12 +2,10 @@
 {!! Html::Style('assets/css/blog.css')!!}
 @section('content')
 <div class="container-fluid">
-<div class="col-md-12">
-	
-</div>
+
 @if (Auth::check())
 	<p>
-	Bienvenido : <b>{{Auth::user()->email}}</b> 
+	Bienvenido : <b>{{Auth::user()->email}}</b> | <a class="" href="{{url('auth/logout')}}">Logout</a> 
 	<a id="reg" class="pull-right" href="{{ url('posts') }}">Nuevo post </a>
 	</p>  
 

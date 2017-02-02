@@ -34,6 +34,9 @@ class postController extends AppBaseController
     {
         $this->postRepository->pushCriteria(new RequestCriteria($request));
         $posts = $this->postRepository->all();
+        if(empty($posts)){
+            Flash::error('No hay posts cargados actualmente');
+        }
 
         return view('posts.index')
             ->with('posts', $posts);
@@ -64,16 +67,24 @@ class postController extends AppBaseController
         $titulo = str_replace(" ","",$titulo);
 
         $imageName = $request->file('imagen')->getClientOriginalExtension();
-        $request->file('imagen')->move(base_path() . '/public/images/',$titulo.".".$imageName);
+        if(!($imageName == 'jpg' || $imageName == 'png' || $imageName == 'JPEG')){
+            Flash::error('Extension invalida');
+              return view('posts.create');
+        }
+        $rand = str_random(15);
+        $request->file('imagen')->move(base_path() . '/public/images/',$titulo.$rand.".".$imageName);
         //SET IMAGE NAME AS DEFAULT VALUE
-        $input['imagen'] = $titulo.".".$imageName;
+        $input['imagen'] = $titulo.$rand.".".$imageName;
 
         //INSERT VIA REPO
         $post = $this->postRepository->create($input);
 
         Flash::success('Post saved successfully.');
-        $allPosts = DB::select('select * from posts order by id desc');
-        return view('home',['posts'=>$allPosts]);
+        $this->postRepository->pushCriteria(new RequestCriteria($request));
+        $posts = $this->postRepository->all();
+
+        return view('posts.index')
+            ->with('posts', $posts);
     }
 
     /**
@@ -88,8 +99,7 @@ class postController extends AppBaseController
         $post = $this->postRepository->findWithoutFail($id);
 
         if (empty($post)) {
-            Flash::error('Post not found');
-
+            Flash::error('No se encontraron posts');
             return redirect(route('posts.index'));
         }
 
@@ -127,6 +137,7 @@ class postController extends AppBaseController
     public function update($id, UpdatepostRequest $request)
     {
         $post = $this->postRepository->findWithoutFail($id);
+        $this->postRepository->pushCriteria(new RequestCriteria($request));
 
         if (empty($post)) {
             Flash::error('Post not found');
@@ -134,13 +145,22 @@ class postController extends AppBaseController
         }
         $titulo = $request->input('titulo');
         $titulo = str_replace(" ","",$titulo);
-
+        if(empty($request->file('imagen'))){
+            Flash::error('Extension invalida');
+            return view('posts.edit');            
+        }
         $imageName = $request->file('imagen')->getClientOriginalExtension();
-        $request->file('imagen')->move(base_path() . '/public/images/',$titulo.".".$imageName);
+
+         if(!($imageName == 'jpg' || $imageName == 'png' || $imageName == 'JPEG')){
+            Flash::error('Extension invalida');
+              return view('posts.edit');
+        }
+        $rand = str_random(15);
+        $request->file('imagen')->move(base_path() . '/public/images/',$titulo.$rand.".".$imageName);
         //SET IMAGE NAME AS DEFAULT VALUE
          $input = $request->all();
 
-        $input['imagen'] = $titulo.".".$imageName;
+        $input['imagen'] = $titulo.$rand.".".$imageName;
 
 
 
@@ -149,8 +169,10 @@ class postController extends AppBaseController
         Flash::success('Post updated successfully.');
 
         
-        $allPosts = DB::select('select * from posts order by id desc');
-        return view('home',['posts'=>$allPosts]);
+        $posts = $this->postRepository->all();
+
+        return view('posts.index')
+            ->with('posts', $posts);
     }
 
     /**

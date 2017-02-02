@@ -1,5 +1,6 @@
 @extends('layouts.app')
 {!! Html::Style('assets/css/forms.css') !!}
+@include('flash::message')
 @section('content')
     <div class="register-logo">
             <a ><b>NUEVA ENTRADA</b></a>
