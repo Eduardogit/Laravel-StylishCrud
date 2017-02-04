@@ -21,14 +21,14 @@
 		 <input type="hidden" value="{{$i++}}">
 		
 			@if( $i % 2 == 0)
-			<div class="col-md-12 col-xs-12 col-sm-12">
+			<div class=" contenedor col-md-12 col-xs-12 col-sm-12">
 				<div class="text-post col-md-12 col-sm-12 col-xs-12 pull-right">
 					<p class="col-md-5 pull-right"><b>{{$post->titulo}}</b> {{$post->contenido}}</p>
 				</div>
 				<img class="img-post col-md-6"  src="{{asset('images')}}/{{$post->imagen}}" alt="">
 			@else
 				<img class="img-post-right col-md-6 pull-right"  src="{{asset('images')}}/{{$post->imagen}}" alt="">
-				<div class="col-md-12 col-xs-12 col-sm-12">
+				<div class="  col-md-12 col-xs-12 col-sm-12">
 					<div class="text-post-left col-md-4 col-sm-4 col-xs-4 pull-left">
 						<p><b>{{$post->titulo}}</b> {{$post->contenido}}</p>
 					</div>

@@ -1,3 +1,4 @@
+
 .text-post  {
 	line-height: 23pt; /* 14 = 10 + 2 above + 2 below */
 	float: left;
@@ -16,9 +17,12 @@
 	max-width: 600px;
     float: right;
 	position: relative;
-    margin-top: 28%;
+    margin-top: 20%;
     margin-left:30px;
-    right: 0px;
+    padding-right: 0px!important;
+}
+.contenedor{
+	padding-right: 0px!important;
 }
    
     @media only screen and (max-width:999px){
